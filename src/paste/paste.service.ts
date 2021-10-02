@@ -26,7 +26,7 @@ export class PasteService {
         owner: 'Forcex',
         title: title,
         reported: false,
-        deleted: false
+        deleted: false,
       })
         .save()
         .then((_res) => {
@@ -67,20 +67,20 @@ export class PasteService {
   }
 
   async deletePaste(id) {
-    if(id) {
+    if (id) {
       return await this.model.findOne({ id: id }).then(async (_res) => {
-        if(_res) {
-          _res.deleted = true
-          _res.save()
+        if (_res) {
+          _res.deleted = true;
+          _res.save();
           return {
-            succes: true
-          }
+            succes: true,
+          };
         } else {
           return {
-            succes: false
-          }
+            succes: false,
+          };
         }
-      })
+      });
     }
   }
 
@@ -91,52 +91,14 @@ export class PasteService {
           _res.reported = true;
           _res.save();
           return {
-            succes: true
-          }
+            succes: true,
+          };
         } else {
           return {
-            succes: false
-          }
+            succes: false,
+          };
         }
       });
-    }
-  }
-
-  async getReports(data) {
-    if(data) {
-      const {USERNAME,PASSWORD} = process.env;
-
-      if(USERNAME == data.username && PASSWORD == data.password) {
-        return await this.model.find({ reported: true }).then(async (_res) => {
-          return {
-            succes: true,
-            _res
-          };
-        })
-      } else {
-        return {
-          succes: false,
-        };
-      }
-    }
-  }
-
-  async getDeletes(data) {
-    if(data) {
-      const {USERNAME,PASSWORD} = process.env;
-
-      if(USERNAME == data.username && PASSWORD == data.password) {
-        return await this.model.find({ deleted: true }).then(async (_res) => {
-          return {
-            succes: true,
-            _res
-          };
-        })
-      } else {
-        return {
-          succes: false,
-        };
-      }
     }
   }
 }

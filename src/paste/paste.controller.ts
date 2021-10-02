@@ -31,26 +31,4 @@ export class PasteController {
   delete(@Param('id') id) {
     return this.pasteService.deletePaste(id);
   }
-
-  @Post('admin/reports')
-  reports(
-    @Body()
-    data: {
-      username: string;
-      password: string;
-    },
-  ) {
-    return this.pasteService.getReports(data);
-  }
-
-  @Post('admin/deleteds')
-  deleteds(
-    @Body()
-    data: {
-      username: string;
-      password: string;
-    },
-  ) {
-    return this.pasteService.getDeletes(data);
-  }
 }
