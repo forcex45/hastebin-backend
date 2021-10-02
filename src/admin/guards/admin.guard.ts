@@ -13,15 +13,10 @@ export class AdminGuard implements CanActivate {
     const {
       username,
       password,
-      secret,
-    }: { username: string; password: string; secret: string } = req.body;
-    if(!username && !password && !secret) return false;
+    }: { username: string; password: string; } = req.body;
+    if (!username && !password) return false;
     if (username == process.env.USERNAME && password == process.env.PASSWORD) {
-      if (secret == process.env.SECRET) {
-        return true;
-      } else {
-        return false;
-      }
+       return true;
     } else {
       return false;
     }
