@@ -1,5 +1,6 @@
 import { Controller, Get, Body, Post, Param, Delete } from '@nestjs/common';
 import { PasteService } from './paste.service';
+import { pasteCreate } from '../interfaces/index.d';
 
 @Controller('paste')
 export class PasteController {
@@ -8,11 +9,7 @@ export class PasteController {
   @Post('create')
   create(
     @Body()
-    data: {
-      content: string;
-      description: string;
-      title: string;
-    },
+    data: pasteCreate,
   ) {
     return this.pasteService.createPaste(data);
   }
